@@ -1,0 +1,31 @@
+<section>
+
+    <div class="d-flex justify-content-between">
+      <h4>List recipe</h4>
+      <a routerLink="/recipe/create" class="btn btn-success">Create New Recipe</a>
+    </div>
+
+    <br>
+    
+    <table class="table ">
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th width="220px">Action</th>
+      </tr>
+      <tr *ngFor="let recipe of recipes">
+        <td>{{ recipe.id }}</td>
+        <td>{{ recipe.name }}</td>
+        <td>{{ recipe.body }}</td>
+        <td>{{ recipe.cuisine }}</td>
+        <td>{{ recipe.strength }}</td>
+        <td>
+          <a href="#" [routerLink]="['/recipe/', 'edit', recipe.id  ]" class="btn btn-primary">Edit</a>
+          <button type="button" (click)="deleteRecipe(recipe.id)" class="btn btn-danger">Delete</button>
+        </td>
+      </tr>
+    </table>
+ </section>
+
