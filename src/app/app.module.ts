@@ -6,7 +6,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { RecipeModule } from './recipe/recipe.module';
-// import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -16,7 +16,7 @@ import { RecipeModule } from './recipe/recipe.module';
     BrowserModule,
     AppRoutingModule,
     // FormsModule,
-    // ReactiveFormsModule,
+    ReactiveFormsModule,
     RecipeModule,
     HttpClientModule,
     NgbModule
