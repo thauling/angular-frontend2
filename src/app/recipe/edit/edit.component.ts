@@ -29,7 +29,7 @@ export class EditComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    this.id = this.route.snapshot.params['idPerson'];
+    this.id = this.route.snapshot.params['idRecipe'];
     this.recipeService.find(this.id).subscribe((data: Recipe)=>{
       this.recipe = data;
     });
