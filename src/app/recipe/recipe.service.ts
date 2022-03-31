@@ -11,7 +11,7 @@ import { Recipe } from './recipe';
 
 export class RecipeService {
 
-  private apiURL = "http://localhost:8000/api/recipe";
+  private apiURL = "http://localhost:8000/api/recipe/";
 
   httpOptions = {
     headers: new HttpHeaders({
