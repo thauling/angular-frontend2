@@ -17,9 +17,9 @@
                   id="name"
                   type="text"
                   class="form-control">
-                <div *ngIf="f['name']invalid" class="alert alert-danger">
-                    <div *ngIf="f['name']errors['required']">*Name is required.</div>
-                    <div *ngIf="f['name']errors['pattern']">*The name must only contain letters.</div>
+                  <div [hidden]="f['cuisine'].valid || f['cuisine'].pristine" class="alert alert-danger">
+                    Add recipe name.
+
                 </div>
               </div>
           </div>
@@ -32,9 +32,9 @@
                   id="body"
                   type="text"
                   class="form-control">
-                <div *ngIf="f['body']invalid" class="alert alert-danger">
-                    <div *ngIf="f['body']errors['required']">*body is required.</div>
-                    <div *ngIf="f['body']errors['body']">*The body must be a valid body address.</div>
+                  <div [hidden]="f['body'].valid || f['body'].pristine" class="alert alert-danger">
+                    Add cooking instructions.
+                
                 </div>
               </div>
           </div>
@@ -47,9 +47,9 @@
                 id="cuisine"
                 type="text"
                 class="form-control">
-              <div *ngIf="f['cuisine']invalid" class="alert alert-danger">
-                  <div *ngIf="f['cuisine']errors['required']">*cuisine is required.</div>
-                  <div *ngIf="f['cuisine']errors['cuisine']">*The cuisine must be a this or that.</div>
+                <div [hidden]="f['cuisine'].valid || f['cuisine'].pristine" class="alert alert-danger">
+                  Add cuisine.
+                 
               </div>
             </div>
         </div>
@@ -62,9 +62,9 @@
                   id="strength"
                   type="text"
                   class="form-control">
-                <div *ngIf="f['strength']invalid" class="alert alert-danger">
-                    <div *ngIf="f['strength']errors['required']">*strength is required.</div>
-                    <div *ngIf="f['strength']errors['pattern']">*The strength must only contain numbers.</div>
+                  <div [hidden]="f['strength'].valid || f['strength'].pristine" class="alert alert-danger">
+                    Add strength.
+                    
                 </div>
               </div>
           </div>

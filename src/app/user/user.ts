@@ -1,8 +1,7 @@
 export interface User {
     id: number;
-    fullname: string;
-    username: string;
+    name: string; // same as in laravel
     email: string;
     password: string;
-    confirmPassword: string;
+    password_confirmation: string; //this name because of laravel sanctum
 }
