@@ -5,11 +5,16 @@ import { UserRoutingModule } from './user-routing.module';
 
 import { CreateComponent } from './create/create.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { LoginComponent } from './login/login.component';
+import { LogoutComponent } from './logout/logout.component';
+
 
 
 @NgModule({
   declarations: [
-    CreateComponent
+    CreateComponent,
+    LoginComponent,
+    LogoutComponent
   ],
   imports: [
     CommonModule,
