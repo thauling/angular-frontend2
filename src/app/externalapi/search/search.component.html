@@ -1,2 +1,22 @@
-<p>{{apiURL}}</p>
-<p>{{apiData}}</p>
+
+<!-- <p>{{apiData}}</p>
+<p>{{externalrecipes.hits[0].recipe.label}}</p>
+<p>{{externalrecipes.hits[0].recipe.mealType}}</p>
+<p>{{externalrecipes.hits[0].recipe.cuisineType[0]}}</p>
+<img src="{{externalrecipes.hits[0].recipe.image}}" alt="{{externalrecipes.hits[0].recipe.label}}" /> -->
+
+<section id="search-component">
+    <label for="search-box">Recipe Search</label>
+    <input #searchBox id="search-box" (input)="search(searchBox.value)" />
+  
+</section>
+
+<section *ngFor="let index of externalrecipes.hits">
+    <img src="{{index.recipe.image}}" alt="{{index.recipe.label}}" />
+    <p>{{index.recipe.mealType}}</p>
+    <p>{{index.recipe.cuisineType[0]}}</p>
+    <p *ngFor="let ingredient of index.recipe.ingredients">
+        <span>{{ingredient.text}}</span>
+    </p>
+    <a href="{{index.recipe.url}}">{{index.recipe.label}}</a>
+</section>

@@ -1,8 +1,16 @@
+// export interface Externalapi {
+//     diet: string;
+//     health: string;
+//     cuisineType: string;
+//     mealType: string;
+//     dishType: string
+// }
+
 export interface Externalapi {
-    query: string;
-    diet: string;
-    health: string;
-    cuisineType: string;
-    mealType: string;
-    dishType: string
+    diet: [];
+    health: [];
+    cuisineType: [];
+    mealType: [];
+    dishType: []
 }
+
