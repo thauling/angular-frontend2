@@ -11,11 +11,13 @@ import { UserModule } from './user/user.module';
 // import { CreateComponent } from './user/create/create.component';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { SearchComponent } from './externalapi/search/search.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    SearchComponent,
     // CreateComponent
   ],
   imports: [
