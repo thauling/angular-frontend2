@@ -4,7 +4,7 @@
 <p>{{externalrecipes.hits[0].recipe.cuisineType[0]}}</p>
 <img src="{{externalrecipes.hits[0].recipe.image}}" alt="{{externalrecipes.hits[0].recipe.label}}" /> -->
 <!-- {{ searchTerm | json }} -->
-<!-- {{query.dish | json}} -->
+
 <section id="search-component">
   <form (ngSubmit)="onSubmit()" #searchForm="ngForm">
     <label for="search">Recipe Search</label>
@@ -29,7 +29,7 @@
         <select class="form-control" id="diet"
                 required
                 [(ngModel)]="query.diet" name="diet"
-                #dish="ngModel">
+                #diet="ngModel">
           <option *ngFor="let diettype of diettypes" [value]="diettype">{{diettype}}</option>
         </select>
 
@@ -37,7 +37,7 @@
         <select class="form-control" id="cuisine"
                 required
                 [(ngModel)]="query.cuisine" name="cuisine"
-                #dish="ngModel">
+                #cuisine="ngModel">
           <option *ngFor="let cuisinetype of cuisinetypes" [value]="cuisinetype">{{cuisinetype}}</option>
         </select>
 
@@ -45,55 +45,26 @@
         <select class="form-control" id="health"
                 required
                 [(ngModel)]="query.health" name="health"
-                #dish="ngModel">
+                #health="ngModel">
           <option *ngFor="let healthtype of healthtypes" [value]="healthtype">{{healthtype}}</option>
         </select>
       </div>
-
-    <!-- following fields need to be predefined selectors, NOT free-search -->
-    <!-- <label for="dish">Dish Type</label>
-    <select name="dish" id="dish">
-        <option *ngFor="let dishtype of dishtypes" [value]="query.dish">
-            {{ dishtype }}
-          </option>
-    </select> -->
-  
-    <!-- <label for="diet">Diet</label>
-    <select name="diet" id="diet" ngModel >
-        <option *ngFor="let diettype of diettypes" [value]="query.diet">
-            {{ diettype }}
-          </option>
-    </select>
-
-    <label for="cuisine">Cuisine</label>
-    <select name="cuisine" id="cuisine" ngModel >
-        <option *ngFor="let cuisinetype of cuisinetypes" [ngValue]="query.cuisine">
-            {{ cuisinetype }}
-          </option>
-    </select>
-
-    <label for="health">Health etc.</label>
-    <select name="health" id="health" ngModel >
-        <option *ngFor="let healthtype of healthtypes" [ngValue]="query.health">
-            {{ healthtype }}
-          </option>
-    </select> -->
 
     <button class="btn btn-primary" type="submit">Search</button>
   </form>
   <!-- 
   <button type="button" (click)="onClickMe()">Click me!</button>
 </section> -->
-
+<!-- {{recipeLabel | json}} -->
   <section *ngFor="let index of externalrecipes.hits">
-    <img src="{{ index.recipe.image }}" alt="{{ index.recipe.label }}" />
+    <img [src]="index.recipe.image" [alt]="index.recipe.label" />
     <p>{{ index.recipe.mealType }}</p>
     <p>{{ index.recipe.cuisineType[0] }}</p>
     <p *ngFor="let ingredient of index.recipe.ingredients">
       <span>{{ ingredient.text }}</span>
     </p>
-    <a href="{{ index.recipe.url }}">{{ index.recipe.label }}</a>
-    <button class="btn btn-primary" type="button" (click)="addToList()">
+    <a [(href)]="index.recipe.url">{{ index.recipe.label }}</a>
+    <button class="btn btn-primary" type="button" (click)="addToList([index.recipe.label, index.recipe.url])">
       Add to my list
     </button>
   </section>

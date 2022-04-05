@@ -18,6 +18,7 @@ export class SearchComponent implements OnInit {
   constructor(private externalapiService: ExternalapiService) {}
 
   externalrecipes: any = [];
+  recipeLabel: string = '';
  
   dishtypes: string[] = ['Starter','Main course', 'Desserts'];
   diettypes: string[] = ['balanced','high-protein','low-carb','low-fat','low-sodium'];
@@ -28,10 +29,10 @@ export class SearchComponent implements OnInit {
 
   query: Externalapi = {
     term: 'chocolate',
-    diet: '',
-    dish: '',
-    health: '',
-    cuisine: '',
+    diet: 'balanced',
+    dish: 'Starter',
+    health: 'kosher',
+    cuisine: 'American',
   };
 
   ngOnInit(): void {
@@ -64,5 +65,7 @@ export class SearchComponent implements OnInit {
     }); 
   }
 
-  addToList() { console.log('index.recipe.url to my list');} //need to use two-way binding
+  addToList(items: string[]) {
+    console.log(items);
+} //need to use two-way binding
 }
