@@ -10,38 +10,17 @@ import { Externalapi } from './externalapi';
 })
 export class ExternalapiService {
 
-  apiData: any;
-
-  // temp: hard-code params for api
-//   apiInput: Externalapi = {
-//     diet: 'low-carb',
-//     health: 'gluten-free',
-//     cuisineType: 'American',
-//     mealType: 'Lunch',
-//     dishType: 'Main'
-// };
-
-// https://api.edamam.com/api/recipes/v2?type=public&beta=false
-// &q=chicken
-// &app_id=2800d86e&app_key=41c010254c6bfb7abd7cb5caf0d4a49d
-//&diet=low-carb
-//&health=gluten-free
-//&cuisineType=American
-//&mealType=Lunch
-//&dishType=Main
-//%20course
-
-  // private apiURL: string = `https://api.edamam.com/api/recipes/v2?type=public&beta=false&q=${this.apiInput.query}
-  // &app_id=2800d86e&app_key=41c010254c6bfb7abd7cb5caf0d4a49d&diet=${this.apiInput.diet}
-  // &health=${this.apiInput.health}
-  // &cuisineType=${this.apiInput.cuisineType}
-  // &mealType=${this.apiInput.mealType}
-  // &dishType=${this.apiInput.dishType}%20course`;
+  // apiData: any;
 
   private apiURL: string = 'https://api.edamam.com/api/recipes/v2?type=public&beta=false&q=chicken&app_id=2800d86e&app_key=41c010254c6bfb7abd7cb5caf0d4a49d&diet=low-carb&health=gluten-free&cuisineType=American&mealType=Lunch&dishType=Main%20course';
 
   private urlPart1: string = 'https://api.edamam.com/api/recipes/v2?type=public&beta=false&q=';
   private urlPart2: string = '&app_id=2800d86e&app_key=41c010254c6bfb7abd7cb5caf0d4a49d';
+  private urlPart3: string = '&diet=';
+  private urlPart4: string = '&health=';
+  private urlPart5: string = '&cuisineType=';
+  private urlPart6: string = '&dishType=';
+
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -50,8 +29,10 @@ export class ExternalapiService {
  }
   constructor(private httpClient: HttpClient) { }
 
-  getAll(): Observable<Externalapi[]> {
-    return this.httpClient.get<Externalapi[]>(this.apiURL)
+  findAll(term: Externalapi): Observable<Externalapi[]> {
+    // return this.httpClient.get<Externalapi[]>(this.urlPart1 + term.term + this.urlPart2)
+    return this.httpClient.get<Externalapi[]>(this.urlPart1 + term.term + this.urlPart2 + this.urlPart3 + term.diet + this.urlPart4 + term.health 
+      + this.urlPart5 + term.cuisine + this.urlPart6 + term.dish)
     .pipe(
       catchError(this.errorHandler)
     )
@@ -81,12 +62,12 @@ export class ExternalapiService {
     );
   }
 
-  find(query: string): Observable<Externalapi> {
-    return this.httpClient.get<Externalapi>(this.urlPart1 + query + this.urlPart2)
-    .pipe(
-      catchError(this.errorHandler)
-    )
-  }
+  // find(query: string): Observable<Externalapi> {
+  //   return this.httpClient.get<Externalapi>(this.urlPart1 + query + this.urlPart2)
+  //   .pipe(
+  //     catchError(this.errorHandler)
+  //   )
+  // }
   
   // httpOptions = {
   //   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
