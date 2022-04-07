@@ -4,6 +4,7 @@ import { Observable, throwError, of } from 'rxjs';
 // import { catchError } from 'rxjs/operators';
 import { catchError, map, tap } from 'rxjs/operators';
 import { Externalapi } from './externalapi';
+import { Recipe } from '../recipe/recipe';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,8 @@ export class ExternalapiService {
 
   // private apiURL: string = 'https://api.edamam.com/api/recipes/v2?type=public&beta=false&q=chicken&app_id=2800d86e&app_key=41c010254c6bfb7abd7cb5caf0d4a49d&diet=low-carb&health=gluten-free&cuisineType=American&mealType=Lunch&dishType=Main%20course';
 
-  private apiURL: string = 'myLaravelApi';
+  
+  private apiURL = "http://localhost:8000/api/recipe/";
 
   private urlPart1: string = 'https://api.edamam.com/api/recipes/v2?type=public&beta=false&q=';
   private urlPart2: string = '&app_id=2800d86e&app_key=41c010254c6bfb7abd7cb5caf0d4a49d';
@@ -64,8 +66,9 @@ export class ExternalapiService {
     );
   }
 
-  create(recipe: Externalapi): Observable<Externalapi> {
-    return this.httpClient.post<Externalapi>(this.apiURL, JSON.stringify(recipe), this.httpOptions)
+  // add external recipe name and url to user list in database
+  create(recipe: Recipe): Observable<Recipe> {
+    return this.httpClient.post<Recipe>(this.apiURL, JSON.stringify(recipe), this.httpOptions)
     .pipe(
       catchError(this.errorHandler)
     )

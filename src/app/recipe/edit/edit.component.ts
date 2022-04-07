@@ -14,11 +14,10 @@ export class EditComponent implements OnInit {
 
   id: number = 0;
   recipe: Recipe = {
-    id: 99,
+    id: 0,
     name: 'add name',
     body: 'add content',
     cuisine: 'specify cuisine',
-    strength: 1
 };
   form: FormGroup = new FormGroup({
     prop:  new FormControl('') // to initialize form 
@@ -39,8 +38,8 @@ export class EditComponent implements OnInit {
     this.form = new FormGroup({
       name:  new FormControl('', [ Validators.required, Validators.pattern('^[a-zA-ZÁáÀàÉéÈèÍíÌìÓóÒòÚúÙùÑñüÜ \-\']+') ]),
       body: new FormControl('', [ Validators.required, Validators.pattern('^[a-zA-ZÁáÀàÉéÈèÍíÌìÓóÒòÚúÙùÑñüÜ \-\']+') ]),
-      cuisine: new FormControl('', [ Validators.required, Validators.pattern('^[a-zA-ZÁáÀàÉéÈèÍíÌìÓóÒòÚúÙùÑñüÜ \-\']+') ]),
-      strength: new FormControl('', [ Validators.required, Validators.pattern("^[1-5]*$") ])
+      cuisine: new FormControl('', [ Validators.required, Validators.pattern('^[a-zA-ZÁáÀàÉéÈèÍíÌìÓóÒòÚúÙùÑñüÜ \-\']+') ])
+      // strength: new FormControl('', [ Validators.required, Validators.pattern("^[1-5]*$") ])
     });
 
   }

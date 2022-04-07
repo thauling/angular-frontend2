@@ -1,7 +1,8 @@
 export interface Recipe {
     id: number;
     name: string;
-    body: string;
+    body?: string;
     cuisine?: string;
-    strength?: number;
+    // strength?: number;
+    // url?: string;
 }

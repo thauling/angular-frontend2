@@ -12,8 +12,7 @@
         <th>ID</th>
         <th>Name</th>
         <th>Body</th>
-        <th>Cuisne</th>
-        <th>Strength</th>
+        <th>Cuisine</th>
         <th width="220px">Action</th>
       </tr>
       <tr *ngFor="let recipe of recipes">
@@ -21,7 +20,6 @@
         <td>{{ recipe.name }}</td>
         <td>{{ recipe.body }}</td>
         <td>{{ recipe.cuisine }}</td>
-        <td>{{ recipe.strength }}</td>
         <td>
           <a href="#" [routerLink]="['/recipe/', 'edit', recipe.id  ]" class="btn btn-primary">Edit</a>
           <button type="button" (click)="deleteRecipe(recipe.id)" class="btn btn-danger">Delete</button>

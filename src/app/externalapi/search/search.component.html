@@ -64,7 +64,7 @@
       <span>{{ ingredient.text }}</span>
     </p>
     <a [(href)]="index.recipe.url">{{ index.recipe.label }}</a>
-    <button class="btn btn-primary" type="button" (click)="addToList([index.recipe.label, index.recipe.url])">
+    <button class="btn btn-primary" type="button" (click)="addToList([index.recipe.label, index.recipe.url, index.recipe.cuisineType[0]])">
       Add to my list
     </button>
   </section>

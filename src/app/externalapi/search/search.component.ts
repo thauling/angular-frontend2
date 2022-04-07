@@ -7,6 +7,11 @@ import { Externalapi } from '../externalapi';
 import { ExternalapiService } from '../externalapi.service';
 
 
+import { Recipe } from '../../recipe/recipe';
+
+import { Router } from '@angular/router';
+
+
 @Component({
   selector: 'app-search',
   templateUrl: './search.component.html',
@@ -15,7 +20,9 @@ import { ExternalapiService } from '../externalapi.service';
 export class SearchComponent implements OnInit {
   // apiData: any;
 
-  constructor(private externalapiService: ExternalapiService) {}
+  constructor(
+    private externalapiService: ExternalapiService,
+    private router: Router) {}
 
   externalrecipes: any = [];
   recipeLabel: string = '';
@@ -35,18 +42,24 @@ export class SearchComponent implements OnInit {
     cuisine: 'American',
   };
 
+  // initialize recipe so that it can be used in addRecipe()
+  recipe: any = {
+    name: '',
+    body: '',
+  }
+
+
   ngOnInit(): void {
-    this.externalapiService.findAll(this.query).subscribe((data: any) => {
-      this.externalrecipes = data;
-      // this.output.diet = data.hits.recipe;
+    // this.externalapiService.findAll(this.query).subscribe((data: any) => {
+    //   this.externalrecipes = data;
+  
+    //   // console.log(this.externalrecipes);
 
-      console.log(this.externalrecipes);
-
-      for (let index in this.externalrecipes.hits) {
-        console.log(this.externalrecipes.hits[index].recipe.label);
-      }
-      // console.log(this.output.diet);
-    });
+    //   for (let index in this.externalrecipes.hits) {
+    //     console.log(this.externalrecipes.hits[index].recipe.label);
+    //   }
+     
+    // });
   }
 
   submitted = false;
@@ -67,5 +80,16 @@ export class SearchComponent implements OnInit {
 
   addToList(items: string[]) {
     console.log(items);
-} //need to use two-way binding
+
+    this.recipe = {
+    name: items[0],
+    body: items[1],
+    cuisine: items[2],
+    };
+    console.log(this.recipe);
+    this.externalapiService.create(this.recipe).subscribe(res => {
+      console.log('Recipe created successfully!');
+      this.router.navigateByUrl('search');
+ })
+} 
 }

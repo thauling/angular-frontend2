@@ -11,63 +11,48 @@
   
           <div class="form-group row">
               <div class="col-md-6 ">
-                <label for="title">Name:</label>
+                <label for="title">Recipe name:</label>
                 <input
                   formControlName="name"
                   id="name"
                   type="text"
-                  class="form-control">
-                  <div [hidden]="f['cuisine'].valid || f['cuisine'].pristine" class="alert alert-danger">
-                    Add recipe name.
-
+                  class="form-control"
+                  required>
+                  <div *ngIf="f['name'].touched && f['name'].invalid" class="alert alert-danger">
+                    Provide a recipe name.
                 </div>
               </div>
           </div>
   
           <div class="form-group row">
               <div class="col-md-6 ">
-                <label for="body">body:</label>
+                <label for="body">Instructions:</label>
                 <input
                   formControlName="body"
                   id="body"
                   type="text"
-                  class="form-control">
-                  <div [hidden]="f['body'].valid || f['body'].pristine" class="alert alert-danger">
+                  class="form-control"
+                  required>
+                  <div *ngIf="f['body'].touched && f['body'].invalid" class="alert alert-danger">
                     Add cooking instructions.
-                
                 </div>
               </div>
           </div>
 
           <div class="form-group row">
             <div class="col-md-6 ">
-              <label for="cuisine">cuisine:</label>
+              <label for="cuisine">Cuisine:</label>
               <input
                 formControlName="cuisine"
                 id="cuisine"
                 type="text"
-                class="form-control">
-                <div [hidden]="f['cuisine'].valid || f['cuisine'].pristine" class="alert alert-danger">
-                  Add cuisine.
-                 
+                class="form-control"
+                required>
+                <div *ngIf="f['cuisine'].touched && f['cuisine'].invalid" class="alert alert-danger">
+                  Specify the type of cuisine.
               </div>
             </div>
         </div>
-  
-          <div class="form-group row">
-              <div class="col-md-6 ">
-                <label for="strength">strength:</label>
-                <input
-                  formControlName="strength"
-                  id="strength"
-                  type="text"
-                  class="form-control">
-                  <div [hidden]="f['strength'].valid || f['strength'].pristine" class="alert alert-danger">
-                    Add strength.
-                    
-                </div>
-              </div>
-          </div>
   
           <button class="btn btn-primary" type="submit" [disabled]="!form.valid">Submit</button>
       </form>

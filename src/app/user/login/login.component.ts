@@ -21,10 +21,8 @@ export class LoginComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = new FormGroup({
-      // name:  new FormControl('', [ Validators.required, Validators.pattern('^[a-zA-ZÁáÀàÉéÈèÍíÌìÓóÒòÚúÙùÑñüÜ \-\']+') ]),
-      email: new FormControl('', [ Validators.required, Validators.pattern('^[a-zA-ZÁáÀàÉéÈèÍíÌìÓóÒòÚúÙùÑñüÜ \-\']+') ]),
-      password: new FormControl('', [ Validators.required, Validators.pattern('^[a-zA-ZÁáÀàÉéÈèÍíÌìÓóÒòÚúÙùÑñüÜ \-\']+') ])
-      // password_confirmation: new FormControl('', [ Validators.required, Validators.pattern("^[1-5]*$") ])
+      email: new FormControl('', [ Validators.required, Validators.email]),
+      password: new FormControl('', [ Validators.required, Validators.minLength(8)])
     });
   }
 
@@ -32,12 +30,12 @@ export class LoginComponent implements OnInit {
     return this.form.controls;
   }
 
-  submit(){
+  login(){
     console.log(this.form.value);
-    this.userService.create(this.form.value).subscribe(res => {
-         console.log('User logged in!');
+    this.userService.login(this.form.value);
          this.router.navigateByUrl('/');
-    })
-  }
+    }
+  
+
 
 }

@@ -11,12 +11,14 @@ import { FormsModule } from '@angular/forms';
 import { RecipeModule } from './recipe/recipe.module';
 import { UserModule } from './user/user.module';
 import { SearchComponent } from './externalapi/search/search.component';
+import { HeaderComponent } from './header/header/header.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     SearchComponent,
+    HeaderComponent,
   ],
   imports: [
     BrowserModule,

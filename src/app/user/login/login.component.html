@@ -7,7 +7,7 @@
   
     <hr/>
   
-      <form [formGroup]="form" (ngSubmit)="submit()">
+      <form [formGroup]="form" (ngSubmit)="login()">
   
   
           <div class="form-group row">
@@ -17,11 +17,11 @@
                   formControlName="email"
                   id="email"
                   type="text"
-                  class="form-control">
-                  <!-- <div [hidden]="f['email'].valid || f['email'].pristine" class="alert alert-danger">
-                   Povide a valid email address.
-                
-                </div> -->
+                  class="form-control"
+                  required>
+                  <div *ngIf="f['email'].touched && f['email'].invalid" class="alert alert-danger">
+                    Povide a valid email address. 
+                 </div>
               </div>
           </div>
 
@@ -31,12 +31,12 @@
               <input
                 formControlName="password"
                 id="password"
-                type="text"
-                class="form-control">
-                <!-- <div [hidden]="f['password'].valid || f['password'].pristine" class="alert alert-danger">
-                  You need to specify a password.
-                 
-              </div> -->
+                type="password"
+                class="form-control"
+                required>
+                <div  *ngIf="f['password'].touched && f['password'].invalid" class="alert alert-danger">
+                  You need to provide your password.
+              </div>
             </div>
         </div>
   

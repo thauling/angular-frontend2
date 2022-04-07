@@ -16,11 +16,11 @@
                   formControlName="name"
                   id="name"
                   type="text"
-                  class="form-control">
-                  <!-- <div [hidden]="f['username'].valid || f['username'].pristine" class="alert alert-danger">
-                    Provide a valid username.
-
-                </div> -->
+                  class="form-control"
+                  required>
+                  <div *ngIf="f['name'].touched && f['name'].invalid" class="alert alert-danger">
+                    Provide a valid username with at least 8 chars.
+                </div>
               </div>
           </div>
   
@@ -31,11 +31,11 @@
                   formControlName="email"
                   id="email"
                   type="text"
-                  class="form-control">
-                  <!-- <div [hidden]="f['email'].valid || f['email'].pristine" class="alert alert-danger">
-                   Povide a valid email address.
-                
-                </div> -->
+                  class="form-control"
+                  required>
+                  <div *ngIf="f['email'].touched && f['email'].invalid" class="alert alert-danger">
+                   Povide a valid email address. 
+                </div>
               </div>
           </div>
 
@@ -45,12 +45,12 @@
               <input
                 formControlName="password"
                 id="password"
-                type="text"
-                class="form-control">
-                <!-- <div [hidden]="f['password'].valid || f['password'].pristine" class="alert alert-danger">
-                  You need to specify a password.
-                 
-              </div> -->
+                type="password"
+                class="form-control"
+                required>
+                <div  *ngIf="f['password'].touched && f['password'].invalid" class="alert alert-danger">
+                  You need to specify a password with at least 8 chars.
+              </div>
             </div>
         </div>
   
@@ -60,17 +60,17 @@
                 <input
                   formControlName="password_confirmation"
                   id="password_confirmation"
-                  type="text"
-                  class="form-control">
-                  <!-- <div [hidden]="f['confirmPassword'].valid || f['confirmPassword'].pristine" class="alert alert-danger">
+                  type="password"
+                  class="form-control"
+                  required>
+                  <div *ngIf="f['password_confirmation'].touched && f['password_confirmation'].invalid" class="alert alert-danger">
                     Confirm your password.
-                    
-                </div> -->
+                </div>
               </div>
           </div>
   
-          <!-- <button class="btn btn-primary" type="submit" [disabled]="!form.valid">Register</button> -->
-          <button class="btn btn-primary" type="submit">Register</button>
+          <button class="btn btn-primary" type="submit" [disabled]="!form.valid">Register</button>
+          <!-- <button class="btn btn-primary" type="submit">Register</button> -->
       </form>
   </div>
   

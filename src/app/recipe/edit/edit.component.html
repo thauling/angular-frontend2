@@ -1,84 +1,71 @@
 <div class="container">
-  
-    <div class="d-flex justify-content-between">
-      <h4>Edit recipe</h4>
-      <a href="#" routerLink="/recipe/index" class="btn btn-primaryt">Back</a>
+  <div class="d-flex justify-content-between">
+    <h4>Edit recipe</h4>
+    <a href="#" routerLink="/recipe/index" class="btn btn-primary">Back</a>
+  </div>
+
+  <hr />
+
+  <form [formGroup]="form" (ngSubmit)="submit()">
+    <div class="form-group row">
+      <div class="col-md-6">
+        <label for="title">Recipe name:</label>
+        <input
+          formControlName="name"
+          [(ngModel)]="recipe.name"
+          id="name"
+          type="text"
+          class="form-control"
+        />
+        <div
+          *ngIf="f['name'].touched && f['name'].invalid"
+          class="alert alert-danger"
+        >
+          Provide a recipe name.
+        </div>
+      </div>
     </div>
 
-    <hr>
-
-    <form [formGroup]="form" (ngSubmit)="submit()">
-
-
-        <div class="form-group row">
-            <div class="col-md-6 ">
-              <label for="title">Name:</label>
-              <input
-                formControlName="name"
-                [(ngModel)]="recipe.name"
-                id="name"
-                type="text"
-                class="form-control">
-              <div [hidden]="f['name'].valid || f['name'].pristine"  class="alert alert-danger">
-                Recipe name is required. 
-                  <!-- <div *ngIf="f['name']errors['required']">*Name is required.</div> -->
-                  <!-- <div *ngIf="f['name']errors['pattern']">*The name must only contain letters.</div> -->
-              </div>
-            </div>
+    <div class="form-group row">
+      <div class="col-md-6">
+        <label for="body">Instructions:</label>
+        <input
+          formControlName="body"
+          [(ngModel)]="recipe.body"
+          id="body"
+          type="text"
+          class="form-control"
+        />
+        <div
+          *ngIf="f['body'].touched && f['body'].invalid"
+          class="alert alert-danger"
+        >
+          Add cooking instructions.
         </div>
-
-        
-        <div class="form-group row">
-            <div class="col-md-6 ">
-              <label for="body">body:</label>
-              <input
-                formControlName="body"
-                [(ngModel)]="recipe.body"
-                id="body"
-                type="text"
-                class="form-control">
-              <div [hidden]="f['body'].valid || f['body'].pristine" class="alert alert-danger">
-                Add recipe instructions.
-                  <!-- <div *ngIf="f['body']errors['required']">*body is required.</div> -->
-                  <!-- <div *ngIf="f['body']errors['body']">*The body must be a valid body address.</div> -->
-              </div>
-            </div>
-        </div>
-
-        <div class="form-group row">
-          <div class="col-md-6 ">
-            <label for="body">Cuisine:</label>
-            <input
-              formControlName="cuisine"
-              [(ngModel)]="recipe.cuisine"
-              id="cuisine"
-              type="text"
-              class="form-control">
-            <div [hidden]="f['cuisine'].valid || f['cuisine'].pristine" class="alert alert-danger">
-              Add cuisine.
-                <!-- <div *ngIf="f['cuisine']errors['required']">*cuisine is required.</div> -->
-                <!-- <div *ngIf="f['cuisine']errors['cuisine']">*The cuisine must be valid.</div> -->
-            </div>
-          </div>
       </div>
+    </div>
 
-        <div class="form-group row">
-            <div class="col-md-6 ">
-              <label for="strength">strength:</label>
-              <input
-                [(ngModel)]="recipe.strength"
-                formControlName="strength"
-                id="strength"
-                type="text"
-                class="form-control">
-          <div [hidden]="f['strength'].valid || f['strength'].pristine" class="alert alert-danger">
-                Add strength.
-                  <!-- <div *ngIf="f['strength']errors['required']">*strength is required.</div> -->
-                  <!-- <div *ngIf="f['strength']errors['pattern']">*The strength must only contain numbers.</div> -->
-              </div>
-            </div>
+    <div class="form-group row">
+      <div class="col-md-6">
+        <label for="body">Cuisine:</label>
+        <input
+          formControlName="cuisine"
+          [(ngModel)]="recipe.cuisine"
+          id="cuisine"
+          type="text"
+          class="form-control"
+        />
+        <div
+          *ngIf="f['cuisine'].touched && f['cuisine'].invalid"
+          class="alert alert-danger"
+        >
+          Specify the type of cuisine.
         </div>
+      </div>
+    </div>
 
-        <button class="btn btn-primary" type="submit" [disabled]="!form.valid">Update</button>
-    </form>
+    <button class="btn btn-primary" type="submit" [disabled]="!form.valid">
+      Update
+    </button>
+  </form>
 </div>

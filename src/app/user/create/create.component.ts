@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user.service';
+import { User } from '../user';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators, FormsModule, ReactiveFormsModule} from '@angular/forms';
 
@@ -22,10 +23,10 @@ export class CreateComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = new FormGroup({
-      name:  new FormControl('', [ Validators.required, Validators.pattern('^[a-zA-ZÁáÀàÉéÈèÍíÌìÓóÒòÚúÙùÑñüÜ \-\']+') ]),
-      email: new FormControl('', [ Validators.required, Validators.pattern('^[a-zA-ZÁáÀàÉéÈèÍíÌìÓóÒòÚúÙùÑñüÜ \-\']+') ]),
-      password: new FormControl('', [ Validators.required, Validators.pattern('^[a-zA-ZÁáÀàÉéÈèÍíÌìÓóÒòÚúÙùÑñüÜ \-\']+') ]),
-      password_confirmation: new FormControl('', [ Validators.required, Validators.pattern("^[1-5]*$") ])
+      name:  new FormControl('', [ Validators.required, Validators.pattern('^[a-zA-ZÁáÀàÉéÈèÍíÌìÓóÒòÚúÙùÑñüÜ \-\']+'), Validators.minLength(8) ]),
+      email: new FormControl('', [ Validators.required, Validators.email ]),
+      password: new FormControl('', [ Validators.required, Validators.minLength(8)]),
+      password_confirmation: new FormControl('', [ Validators.required, Validators.minLength(8) ])
     });
   }
 
@@ -33,12 +34,17 @@ export class CreateComponent implements OnInit {
     return this.form.controls;
   }
 
+  
+  submitted = false;
+
   submit(){
+    this.submitted = true;
     console.log(this.form.value);
     this.userService.create(this.form.value).subscribe(res => {
          console.log('User created successfully!');
          this.router.navigateByUrl('/');
     })
   }
+
 
 }
