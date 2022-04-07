@@ -1,0 +1,48 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">Hmmmmm, lecker!</a>
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" routerLink="/">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" routerLink="/search"
+            >Search recipes</a
+          >
+        </li>
+        <li *ngIf="isLoggedIn()" class="nav-item">
+          <a
+            class="nav-link active"
+            aria-current="page"
+            routerLink="/recipe/index"
+            >My recipes</a
+          >
+        </li>
+      </ul>
+
+    <button
+      *ngIf="!isLoggedIn()"
+      type="button"
+      class="btn"
+      routerLink="/user/create"
+    >
+      Register
+    </button>
+    <button
+      *ngIf="!isLoggedIn()"
+      type="button"
+      class="btn btn-success"
+      routerLink="/user/login"
+    >
+      Login
+    </button>
+    <button
+      *ngIf="isLoggedIn()"
+      type="button"
+      class="btn btn-danger"
+      (click)="logout()"
+    >
+      Logout
+    </button>
+  </div>
+</nav>
