@@ -6,11 +6,11 @@ import { FormGroup, FormControl, Validators, FormsModule, ReactiveFormsModule} f
 
 
 @Component({
-  selector: 'app-create',
-  templateUrl: './create.component.html',
-  styleUrls: ['./create.component.css']
+  selector: 'app-register',
+  templateUrl: './register.component.html',
+  styleUrls: ['./register.component.css']
 })
-export class CreateComponent implements OnInit {
+export class RegisterComponent implements OnInit {
 
   form: FormGroup = new FormGroup({
     prop:  new FormControl('') // to initialize form 
