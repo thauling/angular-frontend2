@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 import { User, UserLogin} from './user';
+import { Router } from '@angular/router';
 
 
 @Injectable({
@@ -11,13 +12,15 @@ import { User, UserLogin} from './user';
 export class UserService {
   private apiURL = 'http://localhost:8000/api/register/';
 
-  httpOptions = {
+  requestHeader = {
     headers: new HttpHeaders({
       'Content-Type': 'application/json',
     }),
   };
 
-  constructor(private httpClient: HttpClient) {}
+  headers = new HttpHeaders().set('Content-Type', 'application/json');
+  
+  constructor(private httpClient: HttpClient, public router: Router) {}
 
   getAll(): Observable<User[]> {
     return this.httpClient
@@ -27,70 +30,58 @@ export class UserService {
 
   // note to self: remove type 'any' later!
 
-  create(User: any): Observable<User> {
+  create(User: User): Observable<User> {
     const url = 'http://localhost:8000/api/register/';
     return this.httpClient
-      .post<User>(url, JSON.stringify(User), this.httpOptions)
+      .post<User>(url, JSON.stringify(User), this.requestHeader)
       .pipe(catchError(this.errorHandler));
   }
-
-  //  find(id: any): Observable<User> {
-  //    return this.httpClient.get<User>(this.apiURL + id)
-  //    .pipe(
-  //      catchError(this.errorHandler)
-  //    )
-  //  }
-
-  //  update(id: any, User: any): Observable<User> {
-  //    return this.httpClient.put<User>(this.apiURL + id, JSON.stringify(User), this.httpOptions)
-  //    .pipe(
-  //      catchError(this.errorHandler)
-  //    )
-  //  }
-
-  //  delete(id: any){
-  //    return this.httpClient.delete<User>(this.apiURL + id, this.httpOptions)
-  //    .pipe(
-  //      catchError(this.errorHandler)
-  //    )
-  //  }
+  
 
   // header spec for user authentication
-  requestHeader = new HttpHeaders(
-    {"Auth":"True"}
-  );
+  // requestHeader = new HttpHeaders(
+  //   {"Auth":"True"}
+  // );
 
-  login(user: UserLogin): void  {
+  login(user: UserLogin) {
     const url = 'http://localhost:8000/api/login/';
-    this.httpClient.post<any>(url, user, {headers: this.requestHeader}).subscribe((res) => {
-      console.log(res.token);
-      console.log(res.user);
-      //  store token on local storage to check for login?
+  
+    return this.httpClient.post<any>(url, user).subscribe((res) => {
+     
       this.setToken(res.token);
-      localStorage.getItem('token') ?  console.log('User logged in!'): console.log('Something went wrong');
+      // console.log(res.token);
+      // console.log(res.user);
+      // localStorage.getItem('showapptoken') ?  console.log('User logged in!'): console.log('Something went wrong');
 
     })
   }
 
-  logout(): void {
-    // const url = 'http://localhost:8000/api/logout/';
-    // logout by clearing localStorage
+  logout() {
+    // logout by removing token from local storage
+    localStorage.removeItem('showapptoken');
+    // better safe than sorry...
     localStorage.clear();
-    localStorage.getItem('token') ?  console.log('User logged in!'): console.log('Logged out');
+    if (this.getToken()) { this.router.navigate(['login'])} 
 
+    let removeToken = localStorage.removeItem('access_token');
+    if (removeToken == null) {
+      this.router.navigate(['login']);
+    }
   }
 
   setToken(token: string): void {
-    localStorage.setItem('token', token);
+    localStorage.setItem('showapptoken', token);  //JSON.stringify(token) should not be needed
   }
-  
-  // clearLocalStorage(): void {
-  //   localStorage.clear();
-  // }
 
-  isLoggedIn() {
-    console.log(localStorage.getItem('token'));
-    return localStorage.getItem('token');
+  
+  getToken(){
+    return localStorage.getItem('showapptoken');
+  } 
+  
+
+  isLoggedIn(): string | null {
+    console.log(localStorage.getItem('showapptoken'));
+    return this.getToken();
   }
   
   errorHandler(error: any) {

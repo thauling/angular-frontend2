@@ -85,6 +85,7 @@ export class SearchComponent implements OnInit {
     name: items[0],
     body: items[1],
     cuisine: items[2],
+    // user_id: 0,        //add a user id placeholder that will be relaced by actual user id
     };
     console.log(this.recipe);
     this.externalapiService.create(this.recipe).subscribe(res => {

@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import {RouterModule} from '@angular/router';
+// import { UserRoutingModule } from './user-routing.module';
 
-import { UserRoutingModule } from './user-routing.module';
-
-import { CreateComponent } from './create/create.component';
+import { RegisterComponent } from './register/register.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { LoginComponent } from './login/login.component';
 import { LogoutComponent } from './logout/logout.component';
@@ -12,13 +12,13 @@ import { LogoutComponent } from './logout/logout.component';
 
 @NgModule({
   declarations: [
-    CreateComponent,
+    RegisterComponent,
     LoginComponent,
     LogoutComponent
   ],
   imports: [
     CommonModule,
-    UserRoutingModule,
+    RouterModule,
     FormsModule,
     ReactiveFormsModule
   ]

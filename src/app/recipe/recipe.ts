@@ -3,6 +3,5 @@ export interface Recipe {
     name: string;
     body?: string;
     cuisine?: string;
-    // strength?: number;
-    // url?: string;
+    // user_id?: number;
 }

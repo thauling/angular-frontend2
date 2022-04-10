@@ -37,7 +37,7 @@ export class EditComponent implements OnInit {
 
     this.form = new FormGroup({
       name:  new FormControl('', [ Validators.required, Validators.pattern('^[a-zA-ZÁáÀàÉéÈèÍíÌìÓóÒòÚúÙùÑñüÜ \-\']+') ]),
-      body: new FormControl('', [ Validators.required, Validators.pattern('^[a-zA-ZÁáÀàÉéÈèÍíÌìÓóÒòÚúÙùÑñüÜ \-\']+') ]),
+      body: new FormControl('', [ Validators.required, Validators.nullValidator ]),  // , Validators.pattern('^[a-zA-ZÁáÀàÉéÈèÍíÌìÓóÒòÚúÙùÑñüÜ \-\']+') 
       cuisine: new FormControl('', [ Validators.required, Validators.pattern('^[a-zA-ZÁáÀàÉéÈèÍíÌìÓóÒòÚúÙùÑñüÜ \-\']+') ])
       // strength: new FormControl('', [ Validators.required, Validators.pattern("^[1-5]*$") ])
     });

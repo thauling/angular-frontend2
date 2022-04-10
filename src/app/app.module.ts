@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -12,6 +12,8 @@ import { RecipeModule } from './recipe/recipe.module';
 import { UserModule } from './user/user.module';
 import { SearchComponent } from './externalapi/search/search.component';
 import { HeaderComponent } from './header/header/header.component';
+
+import { UserInterceptor  } from './user/user.interceptor';
 
 
 @NgModule({
@@ -29,7 +31,13 @@ import { HeaderComponent } from './header/header/header.component';
     NgbModule,
     FormsModule
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: UserInterceptor,
+      multi: true 
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
