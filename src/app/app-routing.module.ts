@@ -5,7 +5,7 @@ import { SearchComponent  } from './externalapi/search/search.component';
 
 import { RegisterComponent  } from './user/register/register.component';
 import { LoginComponent  } from './user/login/login.component';
-import { LogoutComponent  } from './user/logout/logout.component';
+// import { LogoutComponent  } from './user/OLD-logout/logout.component'; not used
 
 import { IndexComponent } from './recipe/index/index.component';
 import { CreateComponent } from './recipe/create/create.component';
@@ -23,7 +23,7 @@ const routes: Routes = [
   // { path: '**', component: NotFoundComponent }, // need to add this - where?
 
   // functionality that requires authenticated user
-  { path: 'user/logout', component: LogoutComponent, canActivate: [UserGuard] },
+  // { path: 'user/logout', component: LogoutComponent, canActivate: [UserGuard] }, not used
   // user-specific (recipe) funtionality
   { path: 'recipe', redirectTo: 'recipe/index', pathMatch: 'full'},
   { path: 'recipe/index', component: IndexComponent, canActivate: [UserGuard] },

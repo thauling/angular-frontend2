@@ -61,12 +61,12 @@ export class UserService {
     localStorage.removeItem('showapptoken');
     // better safe than sorry...
     localStorage.clear();
-    if (this.getToken()) { this.router.navigate(['login'])} 
+    if (this.getToken()) { this.router.navigate(['search'])} 
 
-    let removeToken = localStorage.removeItem('access_token');
-    if (removeToken == null) {
-      this.router.navigate(['login']);
-    }
+    // let removeToken = localStorage.removeItem('access_token');
+    // if (removeToken == null) {
+    //   this.router.navigate(['search']);
+    // }
   }
 
   setToken(token: string): void {

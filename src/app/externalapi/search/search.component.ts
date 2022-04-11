@@ -5,7 +5,7 @@ import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 
 import { Externalapi } from '../externalapi';
 import { ExternalapiService } from '../externalapi.service';
-
+import { UserService } from '../../user/user.service';
 
 import { Recipe } from '../../recipe/recipe';
 
@@ -22,10 +22,11 @@ export class SearchComponent implements OnInit {
 
   constructor(
     private externalapiService: ExternalapiService,
+    private userService: UserService,
     private router: Router) {}
 
   externalrecipes: any = [];
-  recipeLabel: string = '';
+  // recipeLabel: string = '';
  
   dishtypes: string[] = ['Starter','Main course', 'Desserts'];
   diettypes: string[] = ['balanced','high-protein','low-carb','low-fat','low-sodium'];
@@ -43,11 +44,14 @@ export class SearchComponent implements OnInit {
   };
 
   // initialize recipe so that it can be used in addRecipe()
-  recipe: any = {
+  recipe: Recipe = {
+    id: 0, // pseudo-id 
     name: '',
     body: '',
   }
 
+// for messages that are displayed to the user
+  message: string = '';
 
   ngOnInit(): void {
     // this.externalapiService.findAll(this.query).subscribe((data: any) => {
@@ -69,6 +73,7 @@ export class SearchComponent implements OnInit {
     this.externalapiService.findAll(this.query).subscribe((data: any) => {
       this.externalrecipes = data;
       // this.output.diet = data.hits.recipe;
+      this.message = 'Searching for ' + this.query.term;
 
       console.log(this.externalrecipes);
 
@@ -82,15 +87,23 @@ export class SearchComponent implements OnInit {
     console.log(items);
 
     this.recipe = {
+    id: 0,
     name: items[0],
     body: items[1],
     cuisine: items[2],
     // user_id: 0,        //add a user id placeholder that will be relaced by actual user id
     };
-    console.log(this.recipe);
+    // console.log(this.recipe);
     this.externalapiService.create(this.recipe).subscribe(res => {
-      console.log('Recipe created successfully!');
+      // console.log('Recipe created successfully!');
+      this.message = this.recipe.name + ' added to my recipes. Yum yum!';
       this.router.navigateByUrl('search');
  })
 } 
+
+
+public isLoggedIn(): string | null {
+  return this.userService.isLoggedIn();
+} 
+
 }

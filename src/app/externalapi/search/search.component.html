@@ -56,6 +56,10 @@
   <button type="button" (click)="onClickMe()">Click me!</button>
 </section> -->
 <!-- {{recipeLabel | json}} -->
+<section>
+<h4> {{ message }}</h4>
+</section>
+
   <section *ngFor="let index of externalrecipes.hits">
     <img [src]="index.recipe.image" [alt]="index.recipe.label" />
     <p>{{ index.recipe.mealType }}</p>
@@ -64,8 +68,8 @@
       <span>{{ ingredient.text }}</span>
     </p>
     <a [(href)]="index.recipe.url">{{ index.recipe.label }}</a>
-    <button class="btn btn-primary" type="button" (click)="addToList([index.recipe.label, index.recipe.url, index.recipe.cuisineType[0]])">
-      Add to my list
+    <button *ngIf="isLoggedIn()" class="btn btn-primary" type="button" (click)="addToList([index.recipe.label, index.recipe.url, index.recipe.cuisineType[0]])">
+      Add to my recipes
     </button>
   </section>
 </section>
