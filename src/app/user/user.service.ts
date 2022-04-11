@@ -10,7 +10,10 @@ import { Router } from '@angular/router';
   providedIn: 'root',
 })
 export class UserService {
-  private apiURL = 'http://localhost:8000/api/register/';
+  // private apiURL = 'http://localhost:8000/api/register/';
+
+  // Heroku
+  private apiURL = 'https://u06-recipe-api.herokuapp.com/api/register/';
 
   requestHeader = {
     headers: new HttpHeaders({
@@ -31,20 +34,21 @@ export class UserService {
   // note to self: remove type 'any' later!
 
   create(User: User): Observable<User> {
-    const url = 'http://localhost:8000/api/register/';
+    // const url = 'http://localhost:8000/api/register/';
+
+    const url = 'https://u06-recipe-api.herokuapp.com/api/register/'; 
+
     return this.httpClient
       .post<User>(url, JSON.stringify(User), this.requestHeader)
       .pipe(catchError(this.errorHandler));
   }
   
 
-  // header spec for user authentication
-  // requestHeader = new HttpHeaders(
-  //   {"Auth":"True"}
-  // );
 
   login(user: UserLogin) {
-    const url = 'http://localhost:8000/api/login/';
+    // const url = 'http://localhost:8000/api/login/';
+
+    const url = ' https://u06-recipe-api.herokuapp.com/api/login/';
   
     return this.httpClient.post<any>(url, user).subscribe((res) => {
      
