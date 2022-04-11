@@ -4,7 +4,7 @@
 <p>{{externalrecipes.hits[0].recipe.cuisineType[0]}}</p>
 <img src="{{externalrecipes.hits[0].recipe.image}}" alt="{{externalrecipes.hits[0].recipe.label}}" /> -->
 <!-- {{ searchTerm | json }} -->
-
+<div class="container">
 <section id="search-component">
   <form (ngSubmit)="onSubmit()" #searchForm="ngForm">
     <label for="search">Recipe Search</label>
@@ -52,24 +52,25 @@
 
     <button class="btn btn-primary" type="submit">Search</button>
   </form>
-  <!-- 
-  <button type="button" (click)="onClickMe()">Click me!</button>
-</section> -->
-<!-- {{recipeLabel | json}} -->
-<section>
-<h4> {{ message }}</h4>
-</section>
+
+<div>
+<h4 class="bg-info"> {{ message }}</h4>
+</div>
 
   <section *ngFor="let index of externalrecipes.hits">
-    <img [src]="index.recipe.image" [alt]="index.recipe.label" />
-    <p>{{ index.recipe.mealType }}</p>
-    <p>{{ index.recipe.cuisineType[0] }}</p>
-    <p *ngFor="let ingredient of index.recipe.ingredients">
-      <span>{{ ingredient.text }}</span>
-    </p>
-    <a [(href)]="index.recipe.url">{{ index.recipe.label }}</a>
+    <div class="center-block">
+    <a class="text-center" [(href)]="index.recipe.url">{{ index.recipe.label }}</a>
     <button *ngIf="isLoggedIn()" class="btn btn-primary" type="button" (click)="addToList([index.recipe.label, index.recipe.url, index.recipe.cuisineType[0]])">
       Add to my recipes
     </button>
+  </div>
+    <img class="img-responsive" [src]="index.recipe.image" [alt]="index.recipe.label" />
+    <p>{{ index.recipe.mealType }}</p>
+    <p>{{ index.recipe.cuisineType[0] }}</p>
+    <ul *ngFor="let ingredient of index.recipe.ingredients">
+      <li>{{ ingredient.text }}</li>
+    </ul>
+   
   </section>
 </section>
+</div>

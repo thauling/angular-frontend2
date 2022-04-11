@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user.service';
 import { Router } from '@angular/router';
-import { FormGroup, FormControl, Validators} from '@angular/forms'; // FormsModule, ReactiveFormsModule
+import { FormGroup, FormControl, Validators} from '@angular/forms'; 
 
 @Component({
   selector: 'app-login',
@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
   }
 
   login(){
-    console.log(this.form.value);
+    // console.log(this.form.value);
     this.userService.login(this.form.value);
          this.router.navigateByUrl('/');
     }

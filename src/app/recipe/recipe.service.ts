@@ -11,9 +11,9 @@ import { Recipe } from './recipe';
 
 export class RecipeService {
 
-  // private apiURL = "http://localhost:8000/api/recipe/";
+  private apiURL = "http://localhost:8000/api/recipe/";
 
-  private apiURL = "https://u06-recipe-api.herokuapp.com/api/recipe/"; 
+  // private apiURL = "https://u06-recipe-api.herokuapp.com/api/recipe/"; 
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -57,7 +57,7 @@ export class RecipeService {
     )
   }
  
-  errorHandler(error: any) { // should be sth else than any
+  errorHandler(error: any) { 
     let errorMessage = '';
     if(error.error instanceof ErrorEvent) {
       errorMessage = error.error.message;

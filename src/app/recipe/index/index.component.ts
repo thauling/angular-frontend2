@@ -12,6 +12,9 @@ import { Recipe } from '../recipe';
 export class IndexComponent implements OnInit {
   recipes: Recipe[] = [];
 
+  // for messages that are displayed to the user
+  message: string = '';
+  
   constructor(
     public recipeService: RecipeService,
     private userService: UserService
@@ -20,7 +23,7 @@ export class IndexComponent implements OnInit {
   ngOnInit(): void {
     this.recipeService.getAll().subscribe((data: Recipe[]) => {
       this.recipes = data;
-      console.log(this.recipes);
+      // console.log(this.recipes);
     });
   }
 
@@ -28,6 +31,7 @@ export class IndexComponent implements OnInit {
     this.recipeService.delete(id).subscribe((res) => {
       this.recipes = this.recipes.filter((item) => item.id !== id);
       console.log('Recipe deleted successfully!');
+      this.message = 'Recipe deleted';
     });
   }
 

@@ -1,27 +1,31 @@
-<section>
+<section class="container-sm">
   <div *ngIf="!isLoggedIn()" class="d-flex justify-content-between">
     <h5>You need to be logged in to view this page</h5>
   </div>
 
   <div *ngIf="isLoggedIn()" class="d-flex justify-content-between">
-    <h4>List recipe</h4>
+    <h4>My recipes</h4>
     <a routerLink="/recipe/create" class="btn btn-success">Create New Recipe</a>
   </div>
-  <br />
   <div>
-    <table class="table">
-      <tr>
-        <th>ID</th>
+    <h4 class="bg-info"> {{ message }}</h4>
+    </div>
+  <br />
+  <div class="table-responsive-sm">
+    <table class="table table-sm">
+      <tr class="text-light bg-dark">
+        <!-- <th>ID</th> -->
         <th>Name</th>
         <th>Body</th>
-        <th>Cuisine</th>
-        <th width="220px">Action</th>
+        <th class="hidden-xs">Cuisine</th>
+        <th >Action</th> 
       </tr>
-      <tr *ngFor="let recipe of recipes">
-        <td>{{ recipe.id }}</td>
+      <!-- width="220px" -->
+      <tr class="bg-light" *ngFor="let recipe of recipes">
+        <!-- <td>{{ recipe.id }}</td> -->
         <td>{{ recipe.name }}</td>
         <td>{{ recipe.body }}</td>
-        <td>{{ recipe.cuisine }}</td>
+        <td class="hidden-xs">{{ recipe.cuisine }}</td>
         <td>
           <a
             href="#"

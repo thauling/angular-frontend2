@@ -18,6 +18,9 @@ export class CreateComponent implements OnInit {
     prop:  new FormControl('') // to initialize form 
   });
 
+  // for messages that are displayed to the user
+  message: string = '';
+
   constructor(
     public recipeService: RecipeService,
     private router: Router
@@ -38,7 +41,8 @@ export class CreateComponent implements OnInit {
   submit(){
     console.log(this.form.value);
     this.recipeService.create(this.form.value).subscribe(res => {
-         console.log('Recipe created successfully!');
+        //  console.log('Recipe created successfully!');
+         this.message = 'Recipe created.';
          this.router.navigateByUrl('recipe/index');
     })
   }

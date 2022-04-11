@@ -10,10 +10,10 @@ import { Router } from '@angular/router';
   providedIn: 'root',
 })
 export class UserService {
-  // private apiURL = 'http://localhost:8000/api/register/';
+  private apiURL = 'http://localhost:8000/api/register/';
 
   // Heroku
-  private apiURL = 'https://u06-recipe-api.herokuapp.com/api/register/';
+  // private apiURL = 'https://u06-recipe-api.herokuapp.com/api/register/';
 
   requestHeader = {
     headers: new HttpHeaders({
@@ -31,12 +31,11 @@ export class UserService {
       .pipe(catchError(this.errorHandler));
   }
 
-  // note to self: remove type 'any' later!
 
   create(User: User): Observable<User> {
-    // const url = 'http://localhost:8000/api/register/';
+    const url = 'http://localhost:8000/api/register/';
 
-    const url = 'https://u06-recipe-api.herokuapp.com/api/register/'; 
+    // const url = 'https://u06-recipe-api.herokuapp.com/api/register/'; 
 
     return this.httpClient
       .post<User>(url, JSON.stringify(User), this.requestHeader)
@@ -46,17 +45,13 @@ export class UserService {
 
 
   login(user: UserLogin) {
-    // const url = 'http://localhost:8000/api/login/';
+    const url = 'http://localhost:8000/api/login/';
 
-    const url = ' https://u06-recipe-api.herokuapp.com/api/login/';
+    // const url = ' https://u06-recipe-api.herokuapp.com/api/login/';
   
     return this.httpClient.post<any>(url, user).subscribe((res) => {
      
       this.setToken(res.token);
-      // console.log(res.token);
-      // console.log(res.user);
-      // localStorage.getItem('showapptoken') ?  console.log('User logged in!'): console.log('Something went wrong');
-
     })
   }
 
@@ -67,10 +62,6 @@ export class UserService {
     localStorage.clear();
     if (this.getToken()) { this.router.navigate(['search'])} 
 
-    // let removeToken = localStorage.removeItem('access_token');
-    // if (removeToken == null) {
-    //   this.router.navigate(['search']);
-    // }
   }
 
   setToken(token: string): void {
@@ -84,7 +75,7 @@ export class UserService {
   
 
   isLoggedIn(): string | null {
-    console.log(localStorage.getItem('showapptoken'));
+    // console.log(localStorage.getItem('showapptoken'));
     return this.getToken();
   }
   

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from '../user.service';
-import { User } from '../user';
+// import { User } from '../user';
 import { Router } from '@angular/router';
 import { FormGroup, FormControl, Validators, FormsModule, ReactiveFormsModule} from '@angular/forms';
 
@@ -39,7 +39,7 @@ export class RegisterComponent implements OnInit {
 
   submit(){
     this.submitted = true;
-    console.log(this.form.value);
+    // console.log(this.form.value);
     this.userService.create(this.form.value).subscribe(res => {
          console.log('User created successfully!');
          this.router.navigateByUrl('/');
