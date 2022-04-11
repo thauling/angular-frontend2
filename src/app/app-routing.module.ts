@@ -15,7 +15,7 @@ import { UserGuard } from "./user/user.guard";
 
 const routes: Routes = [
   // any-user (guest included) functionality
-  { path: '', redirectTo: '/search', pathMatch: 'full' },
+  { path: '', redirectTo: 'search', pathMatch: 'full' },
   { path: 'user/register', component: RegisterComponent },
   { path: 'user/login', component: LoginComponent },
 
