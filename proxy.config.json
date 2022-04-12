@@ -1,0 +1,12 @@
+{
+    "/api/*": {
+        "target": "https://u06-recipe-api.herokuapp.com/",
+        "secure": false,
+        "logLevel": "info"
+    },
+	"/myotherapp/*": {
+        "target": "http://localhost:4200",
+        "secure": false,
+        "logLevel": "info"
+    }
+}
