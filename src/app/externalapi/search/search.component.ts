@@ -29,13 +29,22 @@ export class SearchComponent implements OnInit {
   'Mediterranian','Mexican','Middle Eastern','Nordic','South American','South East Asian'];
   healthtypes: string[] = ['alcohol-free','egg-free','dairy-free','gluten-free','kosher','peanut-free'];
 
+  // query: Externalapi = {
+  //   term: 'chocolate',
+  //   diet: 'balanced',
+  //   dish: 'Starter',
+  //   health: 'kosher',
+  //   cuisine: 'American',
+  // };
+
   query: Externalapi = {
-    term: 'chocolate',
-    diet: 'balanced',
-    dish: 'Starter',
-    health: 'kosher',
-    cuisine: 'American',
+    term: '',
+    diet: '',
+    dish: '',
+    health: '',
+    cuisine: '',
   };
+
 
   // initialize recipe so that it can be used in addRecipe()
   recipe: Recipe = {

@@ -11,9 +11,9 @@ import { Recipe } from './recipe';
 
 export class RecipeService {
 
-  private apiURL = "http://localhost:8000/api/recipe/";
+  // private apiURL = "http://localhost:8000/api/recipe/";
 
-  // private apiURL = "https://u06-recipe-api.herokuapp.com/api/recipe/"; 
+  private apiURL = "https://u06-recipe-api.herokuapp.com/api/recipe"; 
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -37,21 +37,21 @@ export class RecipeService {
   }
  
   find(id: number): Observable<Recipe> {
-    return this.httpClient.get<Recipe>(this.apiURL + id)
+    return this.httpClient.get<Recipe>(this.apiURL + '/' + id)
     .pipe(
       catchError(this.errorHandler)
     )
   }
  
   update(id: number, recipe: Recipe): Observable<Recipe> {
-    return this.httpClient.put<Recipe>(this.apiURL + id, JSON.stringify(recipe), this.httpOptions)
+    return this.httpClient.put<Recipe>(this.apiURL + '/' + id, JSON.stringify(recipe), this.httpOptions)
     .pipe(
       catchError(this.errorHandler)
     )
   }
  
   delete(id: number){
-    return this.httpClient.delete<Recipe>(this.apiURL + id, this.httpOptions)
+    return this.httpClient.delete<Recipe>(this.apiURL + '/' + id, this.httpOptions)
     .pipe(
       catchError(this.errorHandler)
     )

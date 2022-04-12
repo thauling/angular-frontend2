@@ -11,12 +11,10 @@ import { Recipe } from '../recipe/recipe';
 })
 export class ExternalapiService {
 
-  // apiData: any;
-
-  // private apiURL: string = 'https://api.edamam.com/api/recipes/v2?type=public&beta=false&q=chicken&app_id=2800d86e&app_key=41c010254c6bfb7abd7cb5caf0d4a49d&diet=low-carb&health=gluten-free&cuisineType=American&mealType=Lunch&dishType=Main%20course';
-
   
-  private apiURL = "http://localhost:8000/api/recipe/";
+  // private apiURL = "http://localhost:8000/api/recipe/";
+
+  private apiURL = "https://u06-recipe-api.herokuapp.com/api/recipe"; 
 
   private urlPart1: string = 'https://api.edamam.com/api/recipes/v2?type=public&beta=false&q=';
   private urlPart2: string = '&app_id=2800d86e&app_key=41c010254c6bfb7abd7cb5caf0d4a49d';
@@ -74,28 +72,4 @@ export class ExternalapiService {
     )
   }
 
-
-  // find(query: string): Observable<Externalapi> {
-  //   return this.httpClient.get<Externalapi>(this.urlPart1 + query + this.urlPart2)
-  //   .pipe(
-  //     catchError(this.errorHandler)
-  //   )
-  // }
-  
-  // httpOptions = {
-  //   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-  // };
-
-  // private handleError<T>(operation = 'operation', result?: T) {
-  //   return (error: any): Observable<T> => {
-  //     // TODO: send the error to remote logging infrastructure
-  //     console.error(error); // log to console instead
-
-  //     // TODO: better job of transforming error for user consumption
-  //     console.log(`${operation} failed: ${error.message}`);
-
-  //     // Let the app keep running by returning an empty result.
-  //     return of(result as T);
-  //   };
-  // }
 }

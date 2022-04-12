@@ -10,10 +10,10 @@ import { Router } from '@angular/router';
   providedIn: 'root',
 })
 export class UserService {
-  private apiURL = 'http://localhost:8000/api/register/';
+  // private apiURL = 'http://localhost:8000/api/register/';
 
-  // Heroku
-  // private apiURL = 'https://u06-recipe-api.herokuapp.com/api/register/';
+  // Heroku (trailing '/' MUST be removed)
+  // private apiURL = 'https://u06-recipe-api.herokuapp.com/api/register';
 
   requestHeader = {
     headers: new HttpHeaders({
@@ -25,17 +25,17 @@ export class UserService {
   
   constructor(private httpClient: HttpClient, public router: Router) {}
 
-  getAll(): Observable<User[]> {
-    return this.httpClient
-      .get<User[]>(this.apiURL)
-      .pipe(catchError(this.errorHandler));
-  }
+  // getAll(): Observable<User[]> {
+  //   return this.httpClient
+  //     .get<User[]>(this.apiURL)
+  //     .pipe(catchError(this.errorHandler));
+  // }
 
 
   create(User: User): Observable<User> {
-    const url = 'http://localhost:8000/api/register/';
+    // const url = 'http://localhost:8000/api/register/';
 
-    // const url = 'https://u06-recipe-api.herokuapp.com/api/register/'; 
+    const url = 'https://u06-recipe-api.herokuapp.com/api/register'; 
 
     return this.httpClient
       .post<User>(url, JSON.stringify(User), this.requestHeader)
@@ -45,9 +45,9 @@ export class UserService {
 
 
   login(user: UserLogin) {
-    const url = 'http://localhost:8000/api/login/';
+    // const url = 'http://localhost:8000/api/login/';
 
-    // const url = ' https://u06-recipe-api.herokuapp.com/api/login/';
+    const url = ' https://u06-recipe-api.herokuapp.com/api/login';
   
     return this.httpClient.post<any>(url, user).subscribe((res) => {
      
