@@ -1,11 +1,11 @@
-# this app is based on three tutorials:
+# this app is based on three tutorials (code has been adapted to suit the needs of the assigment and supplemented by own code):
 https://www.tutofox.com/angular/fullstack-crud-app-angular-10-laravel-8-mysql/ for recipe funtionality and
 https://www.bezkoder.com/angular-13-form-validation/ for user login/ registration functionality
 https://www.positronx.io/angular-jwt-user-authentication-tutorial/ for login/ registration/ auth functionality
 
 
 
-example url:
+## example EDAMAM url:
 
  https://api.edamam.com/api/recipes/v2?type=public&beta=false
  &q=chicken
@@ -24,20 +24,8 @@ and in code:
   &cuisineType=${this.apiInput.cuisineType}
   &mealType=${this.apiInput.mealType}
   &dishType=${this.apiInput.dishType}%20course`;
-
-
-   // need >= 6 filters (starter, main, desssert plus >= 3 other filters, eg gluten-free, nuts, vegetarian, vegan) 
-  //request url
-  // type, query, app_id, app_key, diet, health, cuisine, mealType, dishType
-
-  // https://api.edamam.com/api/recipes/v2?type=public&beta=false&q=chicken&app_id=2800d86e&app_key=41c010254c6bfb7abd7cb5caf0d4a49d&diet=low-carb&health=gluten-free&cuisineType=American&mealType=Lunch&dishType=Main%20course
   
-  // Response Content Type application/json
 
-
-  // apiURL: string = `https://api.edamam.com/api/recipes/v2?type=public&beta=false&q=${this.apiInput.query}
-  // &app_id=2800d86e&app_key=41c010254c6bfb7abd7cb5caf0d4a49d&diet=${this.apiInput.diet}
-  // &health=${this.apiInput.health}
-  // &cuisineType=${this.apiInput.cuisineType}
-  // &mealType=${this.apiInput.mealType}
-  // &dishType=${this.apiInput.dishType}`
+## for ng build:
+in angular.json, in line 66, I had to change 
+   "defaultConfiguration": "production"   to  "defaultConfiguration": "development"  
